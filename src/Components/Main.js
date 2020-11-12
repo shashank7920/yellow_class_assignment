@@ -48,7 +48,6 @@ function Main() {
             else{
                 var i = imgIndex;
                 setImgIndex(i+1);
-                console.log(imgIndex + "heres");
                 res(i);
             }
         })            
@@ -59,38 +58,12 @@ function Main() {
         fetch(`https://api.unsplash.com/search/photos/?client_id=llm_s3LPu_dBt7IpsvbJWkIp0u9L68y-Pmu5auWR14g&query=${value}&orientation=squarish&page=1&per_page=30`)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
-            console.log(data.total_pages);
             setResults(data.results);
             setPages(data.total_pages);
         })
     }
 
 
-    useEffect(() => {
-        var i;
-        for (i = 2; i <= pages; i++) {
-            
-
-            fetch(`https://api.unsplash.com/search/photos/?client_id=llm_s3LPu_dBt7IpsvbJWkIp0u9L68y-Pmu5auWR14g&query=${value}&orientation=squarish&page=${i}&per_page=30`)
-                .then(res=>res.json())
-                .then(data=>{
-                    console.log(data);
-                    console.log(data.results.length);
-                    console.log(data.results[0]);
-                    results.push(data.results[0]);
-                    var j;
-                    for( j=0 ; i<data.results.length ; j++){
-                        console.log(data.results[j]);
-                    }
-
-
-                })
-
-
-
-        }
-    } , [pages]);
 
 
     useEffect(() => {
@@ -120,11 +93,6 @@ function Main() {
                             setImgId(item.id);
                             setIsOpen(true);
                             setFirst(!first);
-                            
-                            
-                            console.log(item.id);
-                            console.log(results);
-                            console.log(imgId);
 
                              }} />  
                     })
@@ -138,7 +106,6 @@ function Main() {
                 <button type="button" className="btn btn-success navBtn"  onClick={(e) => {
 
                 var q = change_target().then((message) => {
-                    console.log(message + "hello res of promise");
                     setSelectedImg(results[message].urls.regular);
                 })
                 .catch((err) =>{
@@ -153,7 +120,6 @@ function Main() {
                 <button type="button" className="btn btn-success navBtn"
                 onClick={(e) => {
                 var q = change_target_2().then((message) => {
-                    console.log(message + "hello res of promise");
                     setSelectedImg(results[message].urls.regular);
                 })
                 .catch((err) =>{
