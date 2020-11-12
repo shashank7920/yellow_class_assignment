@@ -33,7 +33,6 @@ function Main() {
             else{
                 var i = imgIndex;
                 setImgIndex(i-1);
-                console.log(imgIndex + "heres");
                 res(i);
             }
         })            
